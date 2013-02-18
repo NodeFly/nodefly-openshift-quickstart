@@ -1,4 +1,7 @@
 #!/bin/env node
+// Connect to nodefly
+require('nodefly').profile('app_key', 'app_name')
+
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
@@ -118,7 +121,7 @@ var SampleApp = function() {
      */
     self.initializeServer = function() {
         self.createRoutes();
-        self.app = express.createServer();
+        self.app = express();
 
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {

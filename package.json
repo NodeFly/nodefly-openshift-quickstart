@@ -1,7 +1,7 @@
 {
   "name": "OpenShift-Sample-App",
   "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "description": "Nodefly OpenShift Sample Application",
   "keywords": [
     "OpenShift",
     "Node.js",
@@ -9,14 +9,14 @@
     "openshift"
   ],
   "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url":  "http://openshift.redhat.com/"
+    "name": "Nodefly",
+    "email": "stephen@nodefly.com",
+    "url":  "http://apm.nodefly.com/"
   },
-  "homepage": "http://openshift.redhat.com/",
+  "homepage": "http://apm.nodefly.com/",
   "repository": {
     "type": "git",
-    "url": "https://gitub.com/openshift/origin-server"
+    "url": "https://gitub.com/nodefly/nodefly-openshift-quickstart"
   },
 
   "engines": {
@@ -25,6 +25,8 @@
   },
 
   "dependencies": {
+    "express": "3.0.x",
+    "nodefly": "0.1.x"
   },
   "devDependencies": {},
   "bundleDependencies": [],
