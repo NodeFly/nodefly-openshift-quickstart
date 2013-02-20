@@ -12,7 +12,7 @@ Create an account at http://openshift.redhat.com/ and set up you local machine w
 
 Create a node-0.6 application (you can call your application whatever you want) and change into the application directory.
 <pre>
-  rhc app create nodefly nodejs-0.6 --from-code https://github.com/nodefly/nodefly-openshift-quickstart
+  rhc app create nodefly nodejs-0.6 --from-code https://github.com/NodeFly/nodefly-openshift-quickstart
   cd nodefly
 </pre>
 

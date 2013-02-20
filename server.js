@@ -1,6 +1,9 @@
 #!/bin/env node
 // Connect to nodefly
-require('nodefly').profile('app_key', 'app_name')
+require('nodefly').profile(
+    '0000000000000000000000000000000000000000000000000000000000000000'
+    , process.env.OPENSHIFT_APP_DNS || 'localhost'
+)
 
 //  OpenShift sample Node application
 var express = require('express');
