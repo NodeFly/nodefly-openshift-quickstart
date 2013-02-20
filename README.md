@@ -17,10 +17,13 @@ Create a node-0.6 application (you can call your application whatever you want) 
 </pre>
 
 ###Configuration###
-Configure <strong>server.js</strong> file with your information:
+Configure <strong>server.js</strong> file with your key that you can find in the how-to page when logged into NodeFly:
 
 <pre>
-  require('nodefly').profile('app_key', 'app_name')
+  require('nodefly').profile(
+    '0000000000000000000000000000000000000000000000000000000000000000',
+    process.env.OPENSHIFT_APP_DNS || 'localhost'
+  )
 </pre>
 
 Then push the repo
