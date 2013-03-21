@@ -33,7 +33,7 @@ Configure your `server.js` file with your NodeFly developer key, available on th
       options // optional
     );
 
-Push these changes to your OpenShift app:
+At this point, you are ready to push these changes to your OpenShift app.  You can also take additional (optional) steps to [keep application secrets and keys out of your source](https://www.openshift.com/blogs/secret-free-source-on-paas):
 
     git add package.json server.js
     git commit -m "updating my NodeFly dev key, adding realtime app monitoring"
