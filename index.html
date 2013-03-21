@@ -147,17 +147,28 @@
   <h1>Welcome to OpenShift with NodeFly</h1>
   <h3>Signing up for NodeFly is simple</h3>
   <p>Just go through the sign up process through the <a target="_blank" href="http://nodefly.com">NodeFly website</a>.</p>
-  <p>Log in, then install. Start with:</p>
-  <p>On Linux/Sun OS/OS X, add nodefly to your package.json</p>
-<pre>
-{
-  "name": "my-awesome-application",
-  "dependencies": {
-    "nodefly": "stable"
-  }
-}
+  <p>Install nodefly via npm with <code>npm install -S nodefly</code>.</p>
+  <p>Then add/update the following code in your webserver:</p>
+<pre>var app_name = process.env.OPENSHIFT_APP_NAME || 'local_development',
+    host_url = process.env.OPENSHIFT_APP_DNS  || 'localhost',
+    gear_id = process.env.OPENSHIFT_GEAR_UUID || 1,
+    options = {};
+
+require('nodefly').profile(
+  '00000000000000000000000000000000000000000', // <-- enter your nodefly dev key
+  [ app_name,                                  // See http://nodefly.com/#howto 
+    host_url,
+    gear_id], // to identify multiple gears or processes (for scaled apps)
+  options // optional
+);
 </pre>
-  <p>Then follow the other instructions through the install page.</p>
+  <p>Next, commit your changes and update your OpenShift app:</p>
+<pre>
+git add package.json server.js
+git commit -m 'setting my nodefly developer key, adding realtime app monitoring'
+git push
+</pre>
+<p>You should now be able to monitor your application performance at [http://nodefly.com/#dashboard](http://nodefly.com/#dashboard)</p>
   <small>Need help? Reach out to <a href="mailto:support@nodefly.com">support@nodefly.com</a> and we would be happy to help!</small>
 </body>
 </html>

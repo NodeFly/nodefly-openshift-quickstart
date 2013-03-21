@@ -1,9 +1,17 @@
 #!/bin/env node
 // Connect to nodefly
+var app_name = process.env.OPENSHIFT_APP_NAME || 'local_development',
+    host_url = process.env.OPENSHIFT_APP_DNS  || 'localhost',
+    gear_id = process.env.OPENSHIFT_GEAR_UUID || 1,
+    options = {};
+
 require('nodefly').profile(
-    '0000000000000000000000000000000000000000000000000000000000000000'
-    , process.env.OPENSHIFT_APP_DNS || 'localhost'
-)
+  '00000000000000000000000000000000000000000', // <-- enter your nodefly developer key 
+  [ app_name,                                  // See http://nodefly.com/#howto for info
+    host_url,
+    gear_id], // to identify multiple gears or processes in scaled apps
+  options // optional
+);
 
 //  OpenShift sample Node application
 var express = require('express');

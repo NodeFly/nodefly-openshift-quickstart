@@ -11,26 +11,23 @@
   "author": {
     "name": "Nodefly",
     "email": "stephen@nodefly.com",
-    "url":  "http://apm.nodefly.com/"
+    "url": "http://apm.nodefly.com/"
   },
   "homepage": "http://apm.nodefly.com/",
   "repository": {
     "type": "git",
     "url": "https://gitub.com/nodefly/nodefly-openshift-quickstart"
   },
-
   "engines": {
     "node": ">= 0.6.0",
     "npm": ">= 1.0.0"
   },
-
   "dependencies": {
     "express": "3.0.x",
-    "nodefly": "0.1.x"
+    "nodefly": "~0.1.33"
   },
   "devDependencies": {},
   "bundleDependencies": [],
-
   "private": true,
   "main": "server.js"
 }
