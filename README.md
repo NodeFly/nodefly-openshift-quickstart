@@ -18,7 +18,7 @@ Make sure that the `nodefly` npm module has been added as a dependency in your a
     npm install -S nodefly
 
 ###Configuration###
-Configure your `server.js` file with your NodeFly developer key, available on the [NodeFly howto page](nodefly.com/#howto):
+Configure your `server.js` file with your NodeFly developer key, available on the [NodeFly howto page](http://nodefly.com/#howto):
 
     var app_name = process.env.OPENSHIFT_APP_NAME || 'local_development',
         host_url = process.env.OPENSHIFT_APP_DNS  || 'localhost',
