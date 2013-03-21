@@ -25,7 +25,8 @@
   },
 
   "dependencies": {
-    "express": "*"
+    "express": "*",
+    "nodefly": "~0.1.33"
   },
   "devDependencies": {},
   "bundleDependencies": [],
