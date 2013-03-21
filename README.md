@@ -1,52 +1,44 @@
-Node.js on OpenShift
-====================================================================
-This package includes a dynamic Node.js build stage that will provide your application with a customized Node.js runtime.
-The version of Node that is available will depend on the requirements listed in your application's `package.json` file.
+# Nodefly on OpenShift
+This git repository helps you to setup Nodefly and to showcases a working configuration of the Nodefly agent.
 
-See: `.openshift/action_hooks/` for more informaiton on how the OpenShift build process works.
+## Running on OpenShift
+Create a Nodefly account at http://apm.nodefly.com/.
 
-Basic Setup
------------
+Sign up for OpenShift Online at http://openshift.redhat.com/ and set up you local development machine with the `rhc` command-line tools  by running `sudo gem install rhc` and `rhc setup`.
 
-If this is your first time using OpenShift Online or Node.js, you'll have some quick prep-work to do:
+Create a node-0.6 application (you can call your application whatever you want) and change into the application directory.  We'll use the application name "nodefly" in this example:
 
-1. [Create an OpenShift Online account](http://openshift.redhat.com/app/account/new)
-2. If you don't already have the rhc (Red Hat Cloud) command-line tools, run: `sudo gem install rhc`
-3. Run `rhc setup` to link your OpenShift Online account with your local development environment, and to select an application namespace
-4. [Download and install Node.js](http://nodejs.org) for use in your local development environment: http://nodejs.org
+    rhc app create nodefly nodejs-0.6 --from-code https://github.com/openshift/nodefly-openshift-quickstart.git
+    cd nodefly
 
-If you need any additional help getting started, these links may come in handy:
+###Installation###
 
- * https://openshift.redhat.com/community/get-started#cli
- * https://openshift.redhat.com/community/developers/rhc-client-tools-install
+Make sure that the `nodefly` npm module has been added as a dependency in your application's `package.json` file:
 
-Host your Node.js applications on OpenShift
--------------------------------------------
+    npm install -S nodefly
 
-Create a Node.js application.  This example will produce an application named **nodeapp**:
+###Configuration###
+Configure your `server.js` file with your NodeFly developer key, available on the [NodeFly howto page](nodefly.com/#howto):
 
-    rhc app create nodeapp nodejs --from-code=git://github.com/ryanj/nodejs-custom-version-openshift.git
+    var app_name = process.env.OPENSHIFT_APP_NAME || 'local_development',
+        host_url = process.env.OPENSHIFT_APP_DNS  || 'localhost',
+        gear_id = process.env.OPENSHIFT_GEAR_UUID || 1,
+        options = {};
 
-The above example will output a folder named after your application which contains your local development source.  Make sure to run it from within a directory where you would like to store your development code.
+    require('nodefly').profile(
+      '00000000000000000000000000000000000000000', // <-- enter your nodefly dev key
+      [ app_name,                                  // See http://nodefly.com/#howto 
+        host_url,
+        gear_id], // to identify multiple gears or processes (for scaled apps)
+      options // optional
+    );
 
-That's it!  You should be able to access your application at:
+Push these changes to your OpenShift app:
 
-    http://nodeapp-$yournamespace.rhcloud.com
-
-If your app requires a specific version of Node.js, just update the 'engines' section of your app's `package.json` file to specify your runtime requirements:
-
-    "engines": {
-        "node": ">= 0.10.0",
-        "npm": ">= 1.0.0"
-     },
-
-Commit your changes locally:
-
-    git add package.json
-    git commit -m 'updating package.json to select Node.js version 0.8.21'
-
-Then push your updates to OpenShift
-
+    git add package.json server.js
+    git commit -m "updating my NodeFly dev key, adding realtime app monitoring"
     git push
 
-Additional updates can be made via the same `git add`, `git commit`, and `git push` workflow.
+That's it, you can checkout your application at:
+
+    http://nodefly-$yournamespace.rhcloud.com

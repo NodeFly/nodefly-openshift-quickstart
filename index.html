@@ -6,14 +6,14 @@
   <title>Welcome to OpenShift</title>
   <style>
   html { 
-  background: black; 
+    background: black; 
   }
   body {
     background: #333;
-    background: -webkit-linear-gradient(top, black, #666);
-    background: -o-linear-gradient(top, black, #666);
-    background: -moz-linear-gradient(top, black, #666);
-    background: linear-gradient(top, black, #666);
+    background: -webkit-linear-gradient(bottom, black, #666);
+    background: -o-linear-gradient(bottom, black, #666);
+    background: -moz-linear-gradient(bottom, black, #666);
+    background: linear-gradient(bottom, black, #666);
     color: white;
     font-family: "Helvetica Neue",Helvetica,"Liberation Sans",Arial,sans-serif;
     width: 40em;
@@ -83,25 +83,33 @@
     padding: .5em 0;
   }
 
+  ul#menu {
+    list-style-type: none;
+    margin: auto;
+    height: 40px;
+  }
+  ul#menu li {
+    text-align: center;
+    float: left;
+    width: 50%;
+  }
+
   .brand {
-    display: block;
     text-decoration: none;
   }
   .brand .brand-image {
-    float: left;
     border: none;
   }
+  .brand-image-nodefly {
+    margin-right: 10px;
+  }
   .brand .brand-text {
-    float: left;
     font-size: 24px;
     line-height: 24px;
     padding: 4px 0;
     color: white;
     text-transform: uppercase;
-  }
-  .brand:hover,
-  .brand:active {
-    text-decoration: underline;
+    margin: 0;
   }
 
   .brand:before,
@@ -112,55 +120,55 @@
   .brand:after {
     clear: both;
   }
-  .env {
-    font-size: 16px;
-    line-height: 16px;
-    color: #298A08;
-  }
   </style>
 </head>
 <body>
-  <a href="http://openshift.com" class="brand">
-    <img class="brand-image"
-      alt="OpenShift logo"
-      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAgCAYAAABU1PscAAAAAXNSR0IArs4c6QAAAAZiS0dEAAAAAAAA+UO7fwAAAAlwSFlzAAARHgAAER4B27UUrQAABUhJREFUWMPFWFlsVGUU/s5/70zbaSltA7RQpJ2lC9CFkQkWIgSJxkAhRA0JCYFq4hPG6JsoGKNCtPigxqhvGlPAuGIaE4igNaElbIW2yNL2tkOtTYGWCqWF2e79fCh7p1Bmpnge/3vuOef7z/nPJiTxMHS6pMRuu6YqFNTTAJYSyAU4GZB0AH2AGCANAfc5Qrba6T3HrmECScYLwCioSIcV2AjidQDZ45Q/LJRaWrLV03X89P8GwHB5XwG4DcDkGPWEBKimNrzN094efGQAzjm9GWHFr4R4LiHKgFaSL3r8zYcmHEBbkW+KFo7UEyhKsNeHlMgyV8eJo4kQpqId9ub6HCoc+XWcxl8lcBTATwDax8GfZtHa054/f/bNg8ZcnyOhHjBc834E8MJ9/vML8aYZQX1hd1PP3WFXkhMRfYkIlpOoGomc0WRRTnch+XAQWG2KTNJNLbuy68C/cQMwXOWrAKkdgz8A8kMdg9X5fn/gQcI7POXLaMk3AGbe/P8SbF0D1KcGRGXpIJJpIQkWBHhnsf/Ie3GF0DmnMxmQT8bg7RellXr8ze+Ox3gAcBvNf+iUUhH5FODLSvScAerDGpiVxTAyGUYKzICA34nCwbhDyHB7N4L8PAofhVzh9jfvjffR/ZZTnupIsR8G0C9EjW7Tfnii/dBgrPL0u83kmjHy33Z3Z/zG97uKi7xpWA8GHZpE1mcZRne8MvXblfbxqQAWR+Fp+mdW5hZPjAqu5JVlhrTwOgrXi2ABbjjchF4FYGvi0qhprgagjYod4OeldXWRWBUEtdBjEH4mwIJ7vF2V4Dqgot0+NEFdPAqmdZ5tAXA8Slx6LrpKsxMHQJge5ft1v0oe2OOu+PZ39+LCOFqImqiXo8JzAeBkXlnmnoKK9LgACJl2R9gELsHW1saUwKCpnbIoa8UMTokVgGXJmSjHkfNWUlWDy9d6USVdyoiEF8b1iElxQKHuPG1D/bCtVEBhCiykMQQFgCK2mN2sSx+tkdcbhGq7wKSkK9RnmsCG2xVSLsflAR1S6eloWhawtF8yGJGskSJDBdQR8pIjZMXcfFmm1gOg2lRaSRdT1AD1PBPQbCAyxcRMifCpc41HEtILNbh9s8SSvYTUmBp2LDGOdCOB1OD0XbeByWliwY5bugc9nU2T4wqhCx7PNAV9bSGwARp3TzVaP0j09GQUzJubLUgefY3SEHMh63MVr4FIlYL+7C1AlCwAmxM+/plYy6hhgN2xp1HBawAr72krnH3uoicTaXyHx7uIwKZoT0QhUhszAAI7x7ivL0a60/jp77yyTFrWt6N6rxE99c7OkxdiBhC2y/cAorXHpama/aNG8dkOO32b6p3zTzXmeysfPu4LkkKafA3IrGjfCfPtuGfiPlfx+xBsuWtwpa3zIuy2YaoZ5o0eSQc5TVnb53aeeAuk9eBtRvkqUH0MoTsqA7nL429eFzeA3lyfQ08eaiNgCrjTYNozQ1S+WyUfQCosTLqZ+oiDUNwhggPujpZTuCMXGwUV6cJgKYnNIJffR3df2NLLZ5871puQrUR//pzpU7rOnAfJP53eDELrsoPpk4RIGRn5xqIBAAdBOCAoBjBjPJsJUdZSt9HSOGFrld5cn2M4KbwfkIUJzqYhQlYWdJ7YN2FrFQCY3nPsmk61AuSuRNYyUdaiRBk/7tViR37Zcir1JYC8WNshgjWWPfhq0dmzVx/5bhQAWnLKU1Md8gZHOsjxAgmD2GEKq4s6m1sxASQPu16HiBh53goqPg9ac0TEcwNQEOBlQAZEcMgC94dDZt2c7r8GMIH0H43ZRDC51RVCAAAAAElFTkSuQmCC">
-    <div class="brand-text"><strong>Open</strong>Shift</div>
-  </a>
-  <h1>
-    Welcome to OpenShift
-  </h1>
-  <div>
-    <pre>
-      <a href="/env" class="env">Click here to view your Node.js process version and env.</a>
-    </pre>
-  </div>
-  <p>
-    Place your application here
-  </p>
-  <p>
-    In order to commit to your new project, go to your projects git repo (created with the rhc app create command).  Make your changes, then run:
-  </p>
-  <pre>
-    git commit -a -m 'Some commit message'
-    git push
-  </pre>
-  <p>
-    Then reload this page.
-  </p>
-  
-  <h2>
-    What's next?
-  </h2>
-  <ul>
+  <ul id="menu">
     <li>
-      Why not visit us at <a href="http://openshift.redhat.com">http://openshift.redhat.com</a>, or
+      <a href="http://apm.nodefly.com" class="brand">
+        <img class="brand-image brand-image-nodefly"
+          alt="NodeFly logo"
+          src="data:image/png;base64,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" />
+
+        <img class="brand-image brand-image-nodefly"
+          alt="NodeFly logo"
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAAAgCAYAAAAbpTqJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEKWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS4xLjIiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iPgogICAgICAgICA8eG1wOk1vZGlmeURhdGU+MjAxMy0wMi0yMFQwOTowMjo3OTwveG1wOk1vZGlmeURhdGU+CiAgICAgICAgIDx4bXA6Q3JlYXRvclRvb2w+UGl4ZWxtYXRvciAyLjEuNDwveG1wOkNyZWF0b3JUb29sPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj43MjwvdGlmZjpZUmVzb2x1dGlvbj4KICAgICAgICAgPHRpZmY6Q29tcHJlc3Npb24+NTwvdGlmZjpDb21wcmVzc2lvbj4KICAgICAgICAgPHRpZmY6UmVzb2x1dGlvblVuaXQ+MTwvdGlmZjpSZXNvbHV0aW9uVW5pdD4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24+NzI8L3RpZmY6WFJlc29sdXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4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" />
+      </a>
     </li>
     <li>
-      You could get help in the <a href="http://www.redhat.com/openshift">OpenShift forums</a>, or
-    </li>
-    <li>
-      You're welcome to come chat with us in our IRC channel at #openshift on freenode.net
+      <a href="http://openshift.com" class="brand">
+        <img class="brand-image"
+          alt="OpenShift logo"
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAgCAYAAABU1PscAAAAAXNSR0IArs4c6QAAAAZiS0dEAAAAAAAA+UO7fwAAAAlwSFlzAAARHgAAER4B27UUrQAABUhJREFUWMPFWFlsVGUU/s5/70zbaSltA7RQpJ2lC9CFkQkWIgSJxkAhRA0JCYFq4hPG6JsoGKNCtPigxqhvGlPAuGIaE4igNaElbIW2yNL2tkOtTYGWCqWF2e79fCh7p1Bmpnge/3vuOef7z/nPJiTxMHS6pMRuu6YqFNTTAJYSyAU4GZB0AH2AGCANAfc5Qrba6T3HrmECScYLwCioSIcV2AjidQDZ45Q/LJRaWrLV03X89P8GwHB5XwG4DcDkGPWEBKimNrzN094efGQAzjm9GWHFr4R4LiHKgFaSL3r8zYcmHEBbkW+KFo7UEyhKsNeHlMgyV8eJo4kQpqId9ub6HCoc+XWcxl8lcBTATwDax8GfZtHa054/f/bNg8ZcnyOhHjBc834E8MJ9/vML8aYZQX1hd1PP3WFXkhMRfYkIlpOoGomc0WRRTnch+XAQWG2KTNJNLbuy68C/cQMwXOWrAKkdgz8A8kMdg9X5fn/gQcI7POXLaMk3AGbe/P8SbF0D1KcGRGXpIJJpIQkWBHhnsf/Ie3GF0DmnMxmQT8bg7RellXr8ze+Ox3gAcBvNf+iUUhH5FODLSvScAerDGpiVxTAyGUYKzICA34nCwbhDyHB7N4L8PAofhVzh9jfvjffR/ZZTnupIsR8G0C9EjW7Tfnii/dBgrPL0u83kmjHy33Z3Z/zG97uKi7xpWA8GHZpE1mcZRne8MvXblfbxqQAWR+Fp+mdW5hZPjAqu5JVlhrTwOgrXi2ABbjjchF4FYGvi0qhprgagjYod4OeldXWRWBUEtdBjEH4mwIJ7vF2V4Dqgot0+NEFdPAqmdZ5tAXA8Slx6LrpKsxMHQJge5ft1v0oe2OOu+PZ39+LCOFqImqiXo8JzAeBkXlnmnoKK9LgACJl2R9gELsHW1saUwKCpnbIoa8UMTokVgGXJmSjHkfNWUlWDy9d6USVdyoiEF8b1iElxQKHuPG1D/bCtVEBhCiykMQQFgCK2mN2sSx+tkdcbhGq7wKSkK9RnmsCG2xVSLsflAR1S6eloWhawtF8yGJGskSJDBdQR8pIjZMXcfFmm1gOg2lRaSRdT1AD1PBPQbCAyxcRMifCpc41HEtILNbh9s8SSvYTUmBp2LDGOdCOB1OD0XbeByWliwY5bugc9nU2T4wqhCx7PNAV9bSGwARp3TzVaP0j09GQUzJubLUgefY3SEHMh63MVr4FIlYL+7C1AlCwAmxM+/plYy6hhgN2xp1HBawAr72krnH3uoicTaXyHx7uIwKZoT0QhUhszAAI7x7ivL0a60/jp77yyTFrWt6N6rxE99c7OkxdiBhC2y/cAorXHpama/aNG8dkOO32b6p3zTzXmeysfPu4LkkKafA3IrGjfCfPtuGfiPlfx+xBsuWtwpa3zIuy2YaoZ5o0eSQc5TVnb53aeeAuk9eBtRvkqUH0MoTsqA7nL429eFzeA3lyfQ08eaiNgCrjTYNozQ1S+WyUfQCosTLqZ+oiDUNwhggPujpZTuCMXGwUV6cJgKYnNIJffR3df2NLLZ5871puQrUR//pzpU7rOnAfJP53eDELrsoPpk4RIGRn5xqIBAAdBOCAoBjBjPJsJUdZSt9HSOGFrld5cn2M4KbwfkIUJzqYhQlYWdJ7YN2FrFQCY3nPsmk61AuSuRNYyUdaiRBk/7tViR37Zcir1JYC8WNshgjWWPfhq0dmzVx/5bhQAWnLKU1Md8gZHOsjxAgmD2GEKq4s6m1sxASQPu16HiBh53goqPg9ac0TEcwNQEOBlQAZEcMgC94dDZt2c7r8GMIH0H43ZRDC51RVCAAAAAElFTkSuQmCC">
+        <span class="brand-text"><strong>Open</strong>Shift</span>
+      </a>
     </li>
   </ul>
+  <h1>Welcome to OpenShift with NodeFly</h1>
+  <h3>Signing up for NodeFly is simple</h3>
+  <p>Just go through the sign up process through the <a target="_blank" href="http://nodefly.com">NodeFly website</a>.</p>
+  <p>Install nodefly via npm with <code>npm install -S nodefly</code>.</p>
+  <p>Then add/update the following code in your webserver:</p>
+<pre>var app_name = process.env.OPENSHIFT_APP_NAME || 'local_development',
+    host_url = process.env.OPENSHIFT_APP_DNS  || 'localhost',
+    gear_id = process.env.OPENSHIFT_GEAR_UUID || 1,
+    options = {};
+
+require('nodefly').profile(
+  '00000000000000000000000000000000000000000', // <-- enter your nodefly dev key
+  [ app_name,                                  // See http://nodefly.com/#howto 
+    host_url,
+    gear_id], // to identify multiple gears or processes (for scaled apps)
+  options // optional
+);
+</pre>
+  <p>Next, commit your changes and update your OpenShift app:</p>
+<pre>
+git add package.json server.js
+git commit -m 'setting my nodefly developer key, adding realtime app monitoring'
+git push
+</pre>
+<p>You should now be able to monitor your application performance at [http://nodefly.com/#dashboard](http://nodefly.com/#dashboard)</p>
+  <small>Need help? Reach out to <a href="mailto:support@nodefly.com">support@nodefly.com</a> and we would be happy to help!</small>
 </body>
 </html>
