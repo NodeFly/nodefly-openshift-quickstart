@@ -147,8 +147,7 @@
   <h1>Welcome to OpenShift with NodeFly</h1>
   <h3>Signing up for NodeFly is simple</h3>
   <p>Just go through the sign up process through the <a target="_blank" href="http://nodefly.com">NodeFly website</a>.</p>
-  <p>Install nodefly via npm with <code>npm install -S nodefly</code>.</p>
-  <p>Then add/update the following code in your webserver:</p>
+  <p>Then add/update the following code in <code>server.js</code>:</p>
 <pre>var app_name = process.env.OPENSHIFT_APP_NAME || 'local_development',
     host_url = process.env.OPENSHIFT_APP_DNS  || 'localhost',
     gear_id = process.env.OPENSHIFT_GEAR_UUID || 1,
